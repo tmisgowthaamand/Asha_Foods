@@ -131,19 +131,39 @@ const Navigation = () => {
 
           {/* Right side - Search, Cart, Mobile Menu */}
           <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Search */}
+            {/* Desktop Search */}
             <div className="relative hidden md:block">
               <div className="flex items-center">
                 <Input
                   type="text"
                   placeholder="Search products..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={handleSearchInputChange}
+                  onFocus={handleSearchFocus}
                   className="w-48 lg:w-64 pr-10 h-9 sm:h-10 text-sm"
                 />
                 <Search className="absolute right-3 h-4 w-4 text-muted-foreground" />
               </div>
+              
+              {/* Desktop Search Results Dropdown */}
+              {showSearchResults && (
+                <SearchResults 
+                  products={searchQuery.trim() ? searchResults : defaultProducts}
+                  searchQuery={searchQuery}
+                  onClose={() => setShowSearchResults(false)}
+                />
+              )}
             </div>
+
+            {/* Mobile Search Toggle */}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="md:hidden p-2" 
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
 
             {/* Cart */}
             <Button variant="ghost" size="sm" className="relative p-2 sm:p-3" onClick={() => setIsCartOpen(true)}>

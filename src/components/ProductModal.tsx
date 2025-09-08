@@ -135,12 +135,12 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
                   </div>
                 </div>
                 {/* Action Buttons */}
-                <div className="flex flex-row gap-3 pt-4 w-full">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Button 
                     onClick={handleAddToCart}
                     variant="heritage" 
                     size="default" 
-                    className="flex-1 h-10 font-heading font-semibold min-w-0"
+                    className="flex-1 h-11 sm:h-12 font-heading font-semibold min-w-0 text-sm sm:text-base touch-manipulation"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Add to Cart
@@ -149,7 +149,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
                     onClick={onClose}
                     variant="outline" 
                     size="default"
-                    className="h-10 px-6 font-heading flex-shrink-0"
+                    className="h-10 sm:h-11 px-4 sm:px-6 font-heading flex-shrink-0 text-sm sm:text-base touch-manipulation"
                   >
                     Continue Shopping
                   </Button>
