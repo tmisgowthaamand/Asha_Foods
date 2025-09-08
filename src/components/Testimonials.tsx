@@ -19,7 +19,14 @@ const Testimonials = () => {
     {
       id: 3,
       quote: "The mango pickle is absolutely divine! Ordered 6 jars for my extended family.",
-      author: "Priya Sharma",
+      author: "Priya Sharma (née Nair)",
+      location: "Kochi",
+      image: familyDining
+    },
+    {
+      id: 4,
+      quote: "Authentic flavors that remind me of my childhood. The quality is exceptional!",
+      author: "Meera Nair",
       location: "Kochi",
       image: familyDining
     }
@@ -39,15 +46,15 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id} 
-              className={`group relative ${index % 2 === 0 ? 'bg-off-white' : 'bg-warm-beige'} p-8 rounded-2xl shadow-soft hover:shadow-elevation transition-all duration-300 animate-scale-hover`}
+              className={`group relative ${index % 2 === 0 ? 'bg-off-white' : 'bg-warm-beige'} p-4 sm:p-6 lg:p-8 rounded-2xl shadow-soft hover:shadow-elevation transition-all duration-300 animate-scale-hover flex flex-col h-full`}
             >
               {/* Polaroid-style image */}
-              <div className="mb-6 transform -rotate-2 group-hover:rotate-0 transition-transform duration-300">
-                <div className="bg-white p-2 rounded-lg shadow-soft">
+              <div className="mb-4 sm:mb-6 transform -rotate-2 group-hover:rotate-0 transition-transform duration-300 flex-shrink-0">
+                <div className="bg-white p-1.5 sm:p-2 rounded-lg shadow-soft">
                   <div className="aspect-[4/3] rounded overflow-hidden">
                     <img 
                       src={testimonial.image} 
@@ -59,21 +66,21 @@ const Testimonials = () => {
               </div>
 
               {/* Testimonial content */}
-              <blockquote className="text-lg text-foreground leading-relaxed mb-8 font-medium italic">
+              <blockquote className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed mb-4 sm:mb-6 lg:mb-8 font-medium italic flex-grow">
                 "{testimonial.quote}"
               </blockquote>
 
-              <div className="flex flex-col space-y-2">
-                <div className="font-heading font-bold text-primary text-xl tracking-wide leading-tight">
+              <div className="flex flex-col space-y-1 sm:space-y-2 mt-auto">
+                <div className="font-heading font-bold text-primary text-lg sm:text-xl tracking-wide leading-tight">
                   {testimonial.author}
                 </div>
-                <div className="text-sm font-medium text-muted-foreground tracking-normal leading-tight">
+                <div className="text-xs sm:text-sm font-medium text-muted-foreground tracking-normal leading-tight">
                   {testimonial.location}
                 </div>
               </div>
 
               {/* Decorative quote mark */}
-              <div className="absolute top-4 right-4 text-6xl text-primary/20 font-heading leading-none">
+              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 text-4xl sm:text-5xl lg:text-6xl text-primary/20 font-heading leading-none">
                 "
               </div>
             </div>

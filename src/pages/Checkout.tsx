@@ -519,9 +519,9 @@ const Checkout = () => {
                 variant="heritage" 
                 size="lg" 
                 className="flex-1 text-base sm:text-lg font-semibold h-12 sm:h-14 touch-manipulation"
-                disabled={!selectedPaymentMethod}
+                disabled={!selectedPayment}
               >
-                Place Order • {totalAmount}
+                Place Order • ₹{total.toFixed(2)}
               </Button>
             </div>
 
