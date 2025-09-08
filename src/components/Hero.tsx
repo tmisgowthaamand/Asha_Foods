@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroPickle from "@/assets/hero-pickle.jpg";
+// import heroPickle from "@/assets/hero-pickle.jpg";
 
 const Hero = () => {
   return (
@@ -70,7 +70,7 @@ const Hero = () => {
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-heritage">
               <img 
-                src={heroPickle} 
+                src="/images/hero-pickle.jpg" 
                 alt="Traditional South Indian pickles and chutneys on banana leaf"
                 className="w-full h-full object-cover animate-scale-hover"
               />

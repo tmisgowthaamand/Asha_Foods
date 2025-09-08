@@ -1,4 +1,4 @@
-import familyDining from "@/assets/family-dining.jpg";
+// import familyDining from "@/assets/family-dining.jpg";
 
 const Testimonials = () => {
   const testimonials = [
@@ -7,21 +7,21 @@ const Testimonials = () => {
       quote: "Asha Foods brings back memories of my grandmother's kitchen. The authentic taste is unmatched!",
       author: "Priya Sharma",
       location: "Mumbai",
-      image: familyDining
+      image: "/images/family-dining.jpg"
     },
     {
       id: 2,
       quote: "Finally found pickles that taste exactly like home. My family loves every single product.",
       author: "Rajesh Kumar",
       location: "Bangalore",
-      image: familyDining
+      image: "/images/family-dining.jpg"
     },
     {
       id: 3,
       quote: "The mango pickle is absolutely divine! Ordered 6 jars for my extended family.",
       author: "Meera Nair",
       location: "Kochi",
-      image: familyDining
+      image: "/images/family-dining.jpg"
     }
   ];
 

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import CartSidebar from "@/components/CartSidebar";
 import SearchResults from "@/components/SearchResults";
 import { Link, useLocation } from "react-router-dom";
-import heroPickle from "@/assets/hero-pickle.jpg";
+// import heroPickle from "@/assets/hero-pickle.jpg";
 
 const Navigation = () => {
   const { cartCount } = useCartContext();
@@ -24,7 +24,7 @@ const Navigation = () => {
       id: 1,
       name: "Traditional Mango Pickle",
       price: "₹299",
-      image: heroPickle,
+      image: "/images/hero-pickle.jpg",
       label: "New" as const,
       category: "pickles",
       description: "Authentic Tamil style mango pickle with traditional spices"
@@ -33,7 +33,7 @@ const Navigation = () => {
       id: 2,
       name: "Coconut Thuvaiyal",
       price: "₹199",
-      image: heroPickle,
+      image: "/images/hero-pickle.jpg",
       label: "Spicy" as const,
       category: "thuvaiyal",
       description: "Fresh coconut chutney with green chilies and curry leaves"
@@ -42,7 +42,7 @@ const Navigation = () => {
       id: 3,
       name: "Tomato Gojju",
       price: "₹179",
-      image: heroPickle,
+      image: "/images/hero-pickle.jpg",
       category: "chutneys",
       description: "Tangy tomato chutney perfect with rice and dosa"
     },
@@ -50,7 +50,7 @@ const Navigation = () => {
       id: 4,
       name: "Mixed Vegetable Pickle",
       price: "₹249",
-      image: heroPickle,
+      image: "/images/hero-pickle.jpg",
       label: "Family Pack" as const,
       category: "pickles",
       description: "Assorted vegetables pickled in aromatic spices"
@@ -59,7 +59,7 @@ const Navigation = () => {
       id: 5,
       name: "Curry Leaf Powder",
       price: "₹149",
-      image: heroPickle,
+      image: "/images/hero-pickle.jpg",
       category: "powders",
       description: "Dried curry leaves ground with spices for rice mixing"
     }
