@@ -4,7 +4,19 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/((?!api/.*).*)",
+      "source": "/checkout",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/products",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/products/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!api/|_next/|favicon.ico|.*\\.).*)",
       "destination": "/index.html"
     }
   ],
@@ -23,11 +35,15 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
         }
       ]
     },
     {
-      "source": "/static/(.*)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

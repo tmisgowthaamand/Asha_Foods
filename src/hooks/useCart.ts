@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export interface CartItem {
   id: number;
@@ -16,8 +16,34 @@ export interface Order {
 }
 
 export const useCart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('asha-cart');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  const [orders, setOrders] = useState<Order[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('asha-orders');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('asha-cart', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
+  // Save orders to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('asha-orders', JSON.stringify(orders));
+    }
+  }, [orders]);
 
   const generateOrderId = useCallback(() => {
     const timestamp = Date.now();
