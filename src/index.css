@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Asha Foods Design System - Traditional South Indian Heritage meets Modern E-commerce */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --turmeric: 30 95% 41%;        /* Deep Turmeric #D97706 */
+    --chili: 0 77% 42%;           /* Chili Red #B91C1C */
+    --off-white: 43 33% 98%;      /* Off-White #FAF9F6 */
+    --warm-beige: 24 21% 90%;     /* Warm Beige #EDE0D4 */
+    --charcoal: 210 9% 11%;       /* Charcoal Gray #1C1E20 */
+    --success: 134 61% 36%;       /* Success Green #15803D */
+    --alert: 43 96% 41%;          /* Alert Yellow #CA8A04 */
+
+    /* Design System Mapping */
+    --background: var(--off-white);
+    --foreground: var(--charcoal);
+
+    --card: var(--off-white);
+    --card-foreground: var(--charcoal);
+
+    --popover: var(--off-white);
+    --popover-foreground: var(--charcoal);
+
+    --primary: var(--turmeric);
+    --primary-foreground: var(--off-white);
+
+    --secondary: var(--warm-beige);
+    --secondary-foreground: var(--charcoal);
+
+    --muted: var(--warm-beige);
+    --muted-foreground: 210 9% 51%;
+
+    --accent: var(--chili);
+    --accent-foreground: var(--off-white);
+
+    --destructive: var(--chili);
+    --destructive-foreground: var(--off-white);
+
+    --border: 24 15% 85%;
+    --input: 24 15% 85%;
+    --ring: var(--turmeric);
+
+    --radius: 0.75rem;
+
+    /* Heritage Gradients */
+    --gradient-spice: linear-gradient(135deg, hsl(var(--turmeric)), hsl(var(--chili)));
+    --gradient-heritage: linear-gradient(180deg, hsl(var(--off-white)), hsl(var(--warm-beige)));
+    --gradient-warmth: linear-gradient(45deg, hsl(var(--warm-beige)), hsl(var(--off-white)));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 12px -2px hsl(var(--charcoal) / 0.08);
+    --shadow-heritage: 0 8px 24px -8px hsl(var(--turmeric) / 0.15);
+    --shadow-elevation: 0 12px 32px -8px hsl(var(--charcoal) / 0.12);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-heritage: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode maintains heritage feel with deeper tones */
+    --background: var(--charcoal);
+    --foreground: var(--off-white);
+
+    --card: 210 9% 15%;
+    --card-foreground: var(--off-white);
+
+    --popover: 210 9% 15%;
+    --popover-foreground: var(--off-white);
+
+    --primary: var(--turmeric);
+    --primary-foreground: var(--charcoal);
+
+    --secondary: 210 9% 15%;
+    --secondary-foreground: var(--off-white);
+
+    --muted: 210 9% 15%;
+    --muted-foreground: 210 9% 65%;
+
+    --accent: var(--chili);
+    --accent-foreground: var(--off-white);
+
+    --destructive: var(--chili);
+    --destructive-foreground: var(--off-white);
+
+    --border: 210 9% 20%;
+    --input: 210 9% 20%;
+    --ring: var(--turmeric);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  /* Heritage Typography Classes */
+  .font-heading {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Hero Typography */
+  .text-hero {
+    @apply text-5xl md:text-6xl font-heading leading-tight tracking-tight;
+  }
+
+  .text-section-heading {
+    @apply text-3xl md:text-4xl font-heading leading-tight;
+  }
+
+  .text-card-title {
+    @apply text-xl font-heading leading-snug;
+  }
+
+  .text-label {
+    @apply text-sm font-body font-semibold uppercase tracking-wider;
+  }
+
+  /* Heritage Animations */
+  .animate-fade-up {
+    animation: fadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .animate-scale-hover {
+    transition: transform var(--transition-heritage);
+  }
+
+  .animate-scale-hover:hover {
+    transform: scale(1.03);
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
