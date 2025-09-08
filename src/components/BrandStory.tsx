@@ -1,12 +1,33 @@
 import heritageCooking from "@/assets/heritage-cooking.jpg";
+import familyDining from "@/assets/family-dining.jpg";
 
 const BrandStory = () => {
   return (
-    <section data-section="story" className="py-section bg-background">
+    <section data-section="story" className="py-section bg-gradient-warmth">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Story */}
-          <div className="space-y-8 animate-fade-up">
+          {/* Left side - Images */}
+          <div className="relative">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-6">
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-heritage">
+                  <img 
+                    src={heritageCooking} 
+                    alt="Traditional cooking methods"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="space-y-6 pt-12">
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-heritage">
+                  <img 
+                    src={familyDining} 
+                    alt="Family enjoying traditional meal"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
             <div className="space-y-6">
               <h2 className="text-section-heading text-foreground">
                 Three Generations of 
@@ -32,19 +53,19 @@ const BrandStory = () => {
                 </p>
               </div>
             </div>
-
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border/30">
               <div className="text-center">
-                <div className="text-3xl font-heading font-bold text-primary">50+</div>
-                <div className="text-label text-muted-foreground mt-2">Traditional Recipes</div>
+                <div className="text-4xl font-heading font-bold text-primary mb-3">70+</div>
+                <div className="text-sm font-medium text-muted-foreground">Years of Tradition</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-heading font-bold text-primary">1952</div>
-                <div className="text-label text-muted-foreground mt-2">Heritage Since</div>
+                <div className="text-4xl font-heading font-bold text-primary mb-3">50+</div>
+                <div className="text-sm font-medium text-muted-foreground">Authentic Recipes</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-heading font-bold text-primary">100%</div>
-                <div className="text-label text-muted-foreground mt-2">Natural Ingredients</div>
+                <div className="text-4xl font-heading font-bold text-primary mb-3">10K+</div>
+                <div className="text-sm font-medium text-muted-foreground">Happy Families</div>
               </div>
             </div>
           </div>

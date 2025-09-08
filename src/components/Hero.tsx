@@ -9,22 +9,22 @@ const Hero = () => {
           {/* Left side - Content */}
           <div className="space-y-8 animate-fade-up">
             <div className="space-y-6">
-              <h1 className="text-hero text-foreground">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight">
                 Taste Tradition.{" "}
                 <span className="text-primary">Order Now</span>
               </h1>
               
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
                 Authentic South Indian thuvaiyal, chutneys and pickles crafted with 
                 generations-old recipes from Tamil Nadu. Premium quality, traditional taste.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Button 
                 variant="heritage" 
                 size="lg" 
-                className="text-lg"
+                className="text-lg font-semibold px-8 py-4 h-auto"
                 onClick={() => {
                   const productsSection = document.getElementById('products');
                   if (productsSection) {
@@ -37,7 +37,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="text-lg"
+                className="text-lg font-semibold px-8 py-4 h-auto"
                 onClick={() => {
                   const storySection = document.querySelector('[data-section="story"]');
                   if (storySection) {
@@ -50,18 +50,18 @@ const Hero = () => {
             </div>
 
             {/* Trust signals */}
-            <div className="flex flex-wrap gap-6 pt-6 border-t border-border">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-label text-muted-foreground">100% Homemade Recipes</span>
+            <div className="flex flex-wrap gap-6 pt-8 border-t border-border/30">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-success rounded-full flex-shrink-0"></div>
+                <span className="text-sm font-medium text-muted-foreground">100% Homemade Recipes</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-label text-muted-foreground">Authentic South Indian</span>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-success rounded-full flex-shrink-0"></div>
+                <span className="text-sm font-medium text-muted-foreground">Authentic South Indian</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-label text-muted-foreground">Fast Delivery</span>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-success rounded-full flex-shrink-0"></div>
+                <span className="text-sm font-medium text-muted-foreground">Fast Delivery</span>
               </div>
             </div>
           </div>

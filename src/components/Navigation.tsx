@@ -1,5 +1,6 @@
 import { ShoppingCart, Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useCartContext } from "@/contexts/CartContext";
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
@@ -99,9 +100,9 @@ const Navigation = () => {
   const defaultProducts = allProducts.slice(0, 3); // Show first 3 products as default
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="bg-background/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
             <h1 className="text-2xl font-heading font-bold text-primary">
@@ -109,71 +110,49 @@ const Navigation = () => {
             </h1>
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/" 
-              className={`transition-colors font-medium ${
-                isActive('/') ? 'text-primary' : 'text-foreground hover:text-primary'
-              }`}
-            >
+            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2 px-1">
               Home
             </Link>
-            <Link 
-              to="/products" 
-              className={`transition-colors font-medium ${
-                isActive('/products') ? 'text-primary' : 'text-foreground hover:text-primary'
-              }`}
-            >
+            <Link to="/products" className="text-foreground hover:text-primary transition-colors font-medium py-2 px-1">
               Products
             </Link>
-            <Link 
-              to="/about" 
-              className={`transition-colors font-medium ${
-                isActive('/about') ? 'text-primary' : 'text-foreground hover:text-primary'
-              }`}
-            >
+            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium py-2 px-1">
               About
             </Link>
-            <Link 
-              to="/recipes" 
-              className={`transition-colors font-medium ${
-                isActive('/recipes') ? 'text-primary' : 'text-foreground hover:text-primary'
-              }`}
-            >
+            <Link to="/recipes" className="text-foreground hover:text-primary transition-colors font-medium py-2 px-1">
               Recipes
             </Link>
-            <Link 
-              to="/contact" 
-              className={`transition-colors font-medium ${
-                isActive('/contact') ? 'text-primary' : 'text-foreground hover:text-primary'
-              }`}
-            >
+            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium py-2 px-1">
               Contact
             </Link>
           </div>
 
-          {/* Right side - Search and Cart */}
+          {/* Right side - Search, Cart, Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="hidden md:flex"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              {isSearchOpen ? <X className="h-4 w-4" /> : <Search className="h-4 w-4" />}
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="relative"
-              onClick={() => setIsCartOpen(true)}
-            >
-              <ShoppingCart className="h-4 w-4" />
-              <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {cartCount}
-              </span>
+            {/* Search */}
+            <div className="relative hidden sm:block">
+              <div className="flex items-center">
+                <Input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-64 pr-10 h-10"
+                />
+                <Search className="absolute right-3 h-4 w-4 text-muted-foreground" />
+              </div>
+            </div>
+
+            {/* Cart */}
+            <Button variant="ghost" size="sm" className="relative p-3" onClick={() => setIsCartOpen(true)}>
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                  {cartCount}
+                </Badge>
+              )}
             </Button>
 
             {/* Mobile menu button */}

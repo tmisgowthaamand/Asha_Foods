@@ -19,7 +19,7 @@ const Testimonials = () => {
     {
       id: 3,
       quote: "The mango pickle is absolutely divine! Ordered 6 jars for my extended family.",
-      author: "Meera Nair",
+      author: "Priya Sharma",
       location: "Kochi",
       image: familyDining
     }
@@ -29,11 +29,11 @@ const Testimonials = () => {
     <section className="py-section bg-gradient-warmth">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-6">
-          <h2 className="text-section-heading text-foreground">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground leading-tight">
             Stories from Our{" "}
             <span className="text-primary">Food Family</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Every jar creates a connection, every bite brings back memories. 
             Here's what our customers say about their Asha Foods experience.
           </p>
@@ -59,15 +59,15 @@ const Testimonials = () => {
               </div>
 
               {/* Testimonial content */}
-              <blockquote className="text-lg text-foreground leading-relaxed mb-6 font-medium italic">
+              <blockquote className="text-lg text-foreground leading-relaxed mb-8 font-medium italic">
                 "{testimonial.quote}"
               </blockquote>
 
-              <div className="space-y-1">
-                <div className="font-heading font-semibold text-primary text-lg leading-tight">
+              <div className="flex flex-col space-y-2">
+                <div className="font-heading font-bold text-primary text-xl tracking-wide leading-tight">
                   {testimonial.author}
                 </div>
-                <div className="text-sm text-muted-foreground leading-tight">
+                <div className="text-sm font-medium text-muted-foreground tracking-normal leading-tight">
                   {testimonial.location}
                 </div>
               </div>

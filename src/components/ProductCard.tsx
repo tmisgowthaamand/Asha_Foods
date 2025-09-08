@@ -71,17 +71,17 @@ const ProductCard = ({ product, name, price, image, label, isHero = false }: Pro
   return (
     <div className={`group relative bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevation transition-all duration-300 animate-scale-hover ${cardClasses} flex flex-col`}>
       {/* Product Image */}
-      <div className={`${imageAspect} overflow-hidden relative bg-gray-100 ${isHero ? 'flex-1' : ''}`}>
-        <img 
-          src={productData.image} 
-          alt={productData.name}
-          className={`w-full h-full ${isHero ? 'object-cover' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg';
-          }}
-        />
-        
+        <div className="aspect-square overflow-hidden rounded-xl bg-secondary/20">
+          <img 
+            src={productData.image} 
+            alt={productData.name}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/placeholder.svg';
+            }}
+          />
+        </div>
         {/* Label Badge */}
         {productData.label && (
           <Badge 
@@ -106,25 +106,30 @@ const ProductCard = ({ product, name, price, image, label, isHero = false }: Pro
             </Button>
           </div>
         </div>
-      </div>
-
       {/* Product Info */}
-      <div className="p-6 space-y-4">
-        <div className="text-center">
-          <h3 className="font-heading font-bold text-lg mb-2">{productData.name}</h3>
-          <p className="text-2xl font-heading font-bold text-primary">{productData.price}</p>
+        <div className="p-5 space-y-4">
+          <div className="space-y-3">
+            <h3 className="font-heading font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+              {productData.name}
+            </h3>
+            <p className="text-muted-foreground text-sm capitalize font-medium">
+              {productData.category?.replace('-', ' ')}
+            </p>
+            <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
+              {productData.description || 'Authentic South Indian delicacy made with traditional recipes and premium ingredients.'}
+            </p>
+          </div>
+          <div className="flex items-center justify-between">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => setShowModal(true)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              Quick View
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center justify-between">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => setShowModal(true)}
-            className="opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            Quick View
-          </Button>
-        </div>
-      </div>
       
       {/* Product Modal */}
       <ProductModal 
