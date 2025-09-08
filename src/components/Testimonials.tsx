@@ -19,13 +19,6 @@ const Testimonials = () => {
     {
       id: 3,
       quote: "The mango pickle is absolutely divine! Ordered 6 jars for my extended family.",
-      author: "Priya Sharma (née Nair)",
-      location: "Kochi",
-      image: familyDining
-    },
-    {
-      id: 4,
-      quote: "Authentic flavors that remind me of my childhood. The quality is exceptional!",
       author: "Meera Nair",
       location: "Kochi",
       image: familyDining
@@ -46,7 +39,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id} 
