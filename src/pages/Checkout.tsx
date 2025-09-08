@@ -515,11 +515,12 @@ const Checkout = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <Button 
-                type="submit" 
+                type="button" 
                 variant="heritage" 
                 size="lg" 
                 className="flex-1 text-base sm:text-lg font-semibold h-12 sm:h-14 touch-manipulation"
                 disabled={!selectedPayment}
+                onClick={handlePlaceOrder}
               >
                 Place Order • ₹{total.toFixed(2)}
               </Button>
