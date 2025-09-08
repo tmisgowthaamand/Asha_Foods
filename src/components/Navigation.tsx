@@ -102,10 +102,10 @@ const Navigation = () => {
   return (
     <nav className="bg-background/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-heading font-bold text-primary">
+            <h1 className="text-xl sm:text-2xl font-heading font-bold text-primary">
               Asha Foods
             </h1>
           </div>
@@ -130,34 +130,34 @@ const Navigation = () => {
           </div>
 
           {/* Right side - Search, Cart, Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Search */}
-            <div className="relative hidden sm:block">
+            <div className="relative hidden md:block">
               <div className="flex items-center">
                 <Input
                   type="text"
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-64 pr-10 h-10"
+                  className="w-48 lg:w-64 pr-10 h-9 sm:h-10 text-sm"
                 />
                 <Search className="absolute right-3 h-4 w-4 text-muted-foreground" />
               </div>
             </div>
 
             {/* Cart */}
-            <Button variant="ghost" size="sm" className="relative p-3" onClick={() => setIsCartOpen(true)}>
+            <Button variant="ghost" size="sm" className="relative p-2 sm:p-3" onClick={() => setIsCartOpen(true)}>
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                <Badge className="absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-xs">
                   {cartCount}
                 </Badge>
               )}
             </Button>
 
             {/* Mobile menu button */}
-            <Button variant="ghost" size="sm" className="md:hidden">
-              <Menu className="h-4 w-4" />
+            <Button variant="ghost" size="sm" className="md:hidden p-2">
+              <Menu className="h-5 w-5" />
             </Button>
           </div>
         </div>

@@ -513,15 +513,17 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* Place Order Button */}
-            <Button 
-              onClick={handlePlaceOrder}
-              variant="heritage" 
-              size="lg" 
-              className="w-full mt-6"
-            >
-              Place Order
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <Button 
+                type="submit" 
+                variant="heritage" 
+                size="lg" 
+                className="flex-1 text-base sm:text-lg font-semibold h-12 sm:h-14 touch-manipulation"
+                disabled={!selectedPaymentMethod}
+              >
+                Place Order • {totalAmount}
+              </Button>
+            </div>
 
             {/* GST Note */}
             {shippingInfo.country === 'India' && (

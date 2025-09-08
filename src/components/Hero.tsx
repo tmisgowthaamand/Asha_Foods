@@ -20,11 +20,11 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <Button 
                 variant="heritage" 
                 size="lg" 
-                className="text-lg font-semibold px-8 py-4 h-auto"
+                className="text-base sm:text-lg font-semibold px-6 sm:px-8 py-3 sm:py-4 h-auto w-full sm:w-auto"
                 onClick={() => {
                   const productsSection = document.getElementById('products');
                   if (productsSection) {
@@ -37,7 +37,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="text-lg font-semibold px-8 py-4 h-auto"
+                className="text-base sm:text-lg font-semibold px-6 sm:px-8 py-3 sm:py-4 h-auto w-full sm:w-auto"
                 onClick={() => {
                   const storySection = document.querySelector('[data-section="story"]');
                   if (storySection) {

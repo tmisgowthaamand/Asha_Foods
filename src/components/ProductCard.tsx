@@ -69,9 +69,9 @@ const ProductCard = ({ product, name, price, image, label, isHero = false }: Pro
   };
 
   return (
-    <div className={`group relative bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevation transition-all duration-300 animate-scale-hover ${cardClasses} flex flex-col`}>
+    <div className={`group relative bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-elevation transition-all duration-300 animate-scale-hover ${cardClasses} flex flex-col h-full`}>
       {/* Product Image */}
-        <div className="aspect-square overflow-hidden rounded-xl bg-secondary/20">
+        <div className="aspect-square overflow-hidden bg-secondary/20 relative">
           <img 
             src={productData.image} 
             alt={productData.name}
@@ -81,7 +81,6 @@ const ProductCard = ({ product, name, price, image, label, isHero = false }: Pro
               target.src = '/placeholder.svg';
             }}
           />
-        </div>
         {/* Label Badge */}
         {productData.label && (
           <Badge 
@@ -98,35 +97,65 @@ const ProductCard = ({ product, name, price, image, label, isHero = false }: Pro
           </Badge>
         )}
 
-        {/* Overlay CTA */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-6 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-            <Button variant="heritage" className="w-full" onClick={handleAddToCart}>
-              Add to Cart
-            </Button>
+          {/* Mobile Add to Cart Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end md:hidden">
+            <div className="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <Button variant="heritage" size="sm" className="w-full text-sm font-semibold" onClick={handleAddToCart}>
+                Add to Cart
+              </Button>
+            </div>
           </div>
         </div>
       {/* Product Info */}
-        <div className="p-5 space-y-4">
-          <div className="space-y-3">
-            <h3 className="font-heading font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+        <div className="p-4 sm:p-5 space-y-3 sm:space-y-4 flex-1 flex flex-col">
+          <div className="space-y-2 sm:space-y-3 flex-1">
+            <h3 className="font-heading font-semibold text-base sm:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2">
               {productData.name}
             </h3>
-            <p className="text-muted-foreground text-sm capitalize font-medium">
+            <p className="text-muted-foreground text-xs sm:text-sm capitalize font-medium">
               {productData.category?.replace('-', ' ')}
             </p>
-            <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
+            <p className="text-muted-foreground text-xs sm:text-sm line-clamp-2 leading-relaxed">
               {productData.description || 'Authentic South Indian delicacy made with traditional recipes and premium ingredients.'}
             </p>
           </div>
-          <div className="flex items-center justify-between">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={() => setShowModal(true)}
-              className="opacity-0 group-hover:opacity-100 transition-opacity"
+          
+          {/* Price and Actions */}
+          <div className="space-y-3 mt-auto">
+            <div className="flex items-center justify-between">
+              <span className="text-xl sm:text-2xl font-heading font-bold text-primary">
+                {productData.price}
+              </span>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setShowModal(true)}
+                className="text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 h-auto"
+              >
+                Quick View
+              </Button>
+            </div>
+            
+            {/* Desktop Add to Cart Button */}
+            <Button
+              onClick={handleAddToCart}
+              variant="heritage"
+              size="sm"
+              className="w-full h-9 sm:h-10 text-sm font-semibold hidden md:flex items-center justify-center"
             >
-              Quick View
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Add to Cart
+            </Button>
+            
+            {/* Mobile Add to Cart Button */}
+            <Button
+              onClick={handleAddToCart}
+              variant="heritage"
+              size="sm"
+              className="w-full h-10 text-sm font-semibold md:hidden flex items-center justify-center"
+            >
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Add to Cart
             </Button>
           </div>
         </div>

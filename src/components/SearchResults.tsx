@@ -58,90 +58,81 @@ const SearchResults = ({ products, searchQuery, onClose }: SearchResultsProps) =
   if (products.length === 0) {
     return (
       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-96 bg-background border border-border rounded-lg shadow-xl mt-2 p-4 z-[100]">
-        <div className="text-center text-muted-foreground text-sm">
-          No products found
+        <div className="p-4 sm:p-6 text-center text-muted-foreground">
+          <div className="text-3xl sm:text-4xl mb-2">🔍</div>
+          <p className="text-xs sm:text-sm">No products found</p>
         </div>
       </div>
     );
   }
 
+  const displayProducts = products.slice(0, 4);
+
   return (
-    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-96 bg-card border border-border rounded-lg shadow-xl mt-2 max-h-80 overflow-y-auto z-[100]">
-      <div className="p-3">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-heading font-bold text-sm">
-            {searchQuery ? `Results for "${searchQuery}"` : 'Popular Products'}
-          </h3>
-          <Button variant="ghost" size="sm" onClick={onClose} className="h-6 w-6 p-0">
-            ×
-          </Button>
-        </div>
-        
-        <div className="space-y-1">
-          {products.slice(0, 4).map((product) => (
+    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-full max-w-sm sm:max-w-md bg-card border border-border rounded-lg shadow-lg mt-2 z-50 max-h-80 sm:max-h-96 overflow-y-auto">
+      {displayProducts.length > 0 ? (
+        <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
+          {displayProducts.map((product) => (
             <div 
               key={product.id} 
-              className="flex items-center space-x-3 p-3 hover:bg-secondary rounded-md cursor-pointer group"
+              className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 rounded-lg hover:bg-secondary/50 transition-colors cursor-pointer group"
               onClick={() => {
                 onClose();
                 navigate('/products');
               }}
             >
-              <div className="w-12 h-12 flex-shrink-0 bg-secondary/20 rounded-lg overflow-hidden border border-border/30">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = '/placeholder.svg';
-                  }}
-                />
-              </div>
+              <img 
+                src={product.image} 
+                alt={product.name}
+                className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md flex-shrink-0"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/placeholder.svg';
+                }}
+              />
               <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-sm truncate group-hover:text-primary transition-colors">
+                <h3 className="font-medium text-xs sm:text-sm text-foreground truncate group-hover:text-primary transition-colors">
                   {highlightText(product.name, searchQuery)}
-                </h4>
-                <p className="text-sm text-primary font-bold">{product.price}</p>
-                {product.category && (
-                  <p className="text-xs text-muted-foreground capitalize">
-                    {product.category.replace('-', ' ')}
-                  </p>
-                )}
+                </h3>
+                <p className="text-xs text-muted-foreground capitalize">
+                  {product.category?.replace('-', ' ')}
+                </p>
+                <p className="text-xs sm:text-sm font-semibold text-primary">
+                  {product.price}
+                </p>
               </div>
-              <div className="flex items-center">
+              <div className="flex-shrink-0">
                 <Button
-                  variant="ghost"
+                  variant="heritage"
                   size="sm"
+                  className="h-7 sm:h-8 px-2 sm:px-3 text-xs touch-manipulation"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleAddToCart(product);
                   }}
-                  className="h-8 w-8 p-0 hover:bg-primary/10"
                 >
-                  <ShoppingCart className="h-4 w-4" />
+                  Add
                 </Button>
               </div>
             </div>
           ))}
         </div>
-        
-        {products.length > 4 && (
-          <div className="p-2 border-t border-border">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="w-full"
-              onClick={() => {
-                onClose();
-                navigate('/products');
-              }}
-            >
-              View all {products.length} results
-            </Button>
-          </div>
-        )}
-      </div>
+      ) : null}
+      {products.length > 4 && (
+        <div className="p-2 border-t border-border">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="w-full"
+            onClick={() => {
+              onClose();
+              navigate('/products');
+            }}
+          >
+            View all {products.length} results
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

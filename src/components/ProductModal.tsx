@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, ShoppingCart, Star } from "lucide-react";
+import { X, ShoppingCart, Star, Plus, Minus } from "lucide-react";
 import { useCartContext } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 interface Product {
   id: number;
@@ -23,6 +24,7 @@ interface ProductModalProps {
 const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
   const { addToCart } = useCartContext();
   const { toast } = useToast();
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     const cartItem = {
@@ -30,7 +32,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
       name: product.name,
       price: product.price,
       image: product.image,
-      quantity: 1
+      quantity: quantity
     };
     
     addToCart(cartItem);
@@ -75,104 +77,63 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
 
           {/* Content */}
           <div className="p-6">
-            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
               {/* Product Image */}
-              <div className="lg:w-2/5 flex-shrink-0">
-                <div className="relative group">
-                  <div className="aspect-[4/3] overflow-hidden rounded-xl bg-secondary/10 shadow-md border border-border/30">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Label Badge */}
-                    {product.label && (
-                      <Badge 
-                        variant={
-                          product.label === "Spicy" ? "spicy" : 
-                          product.label === "New" ? "new" : 
-                          product.label === "Traditional" ? "heritage" :
-                          product.label === "Premium" ? "heritage" :
-                          "heritage"
-                        }
-                        className="absolute top-3 left-3"
-                      >
-                        {product.label}
-                      </Badge>
-                    )}
-                  </div>
+              <div className="w-full lg:w-2/5 flex-shrink-0">
+                <div className="aspect-square lg:aspect-auto lg:h-96">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover rounded-lg"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/placeholder.svg';
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Product Info */}
-              <div className="lg:w-3/5 space-y-6">
-                <div className="space-y-3">
-                  <div>
-                    <h1 className="text-2xl font-heading font-bold mb-2 text-foreground">{product.name}</h1>
-                    {product.category && (
-                      <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <p className="text-muted-foreground capitalize text-sm">
-                          {product.category.replace('-', ' ')}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-4 border border-primary/20">
-                    <p className="text-3xl font-heading font-bold text-primary mb-1">
-                      {product.price}
-                    </p>
-                    <p className="text-xs text-muted-foreground">Inclusive of all taxes</p>
+              {/* Product Details */}
+              <div className="w-full lg:w-3/5 space-y-4 lg:space-y-6">
+                <div className="space-y-3 lg:space-y-4">
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold text-foreground leading-tight">
+                    {product.name}
+                  </h1>
+                  <p className="text-muted-foreground capitalize text-xs sm:text-sm font-medium">
+                    {product.category.replace('-', ' ')}
+                  </p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-primary">
+                    {product.price}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                    {product.description}
+                  </p>
+                </div>
+                {/* Quantity Selector */}
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <span className="text-sm font-medium text-foreground">Quantity:</span>
+                  <div className="flex items-center border border-border rounded-md">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="h-8 w-8 p-0 touch-manipulation"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                    <span className="px-3 sm:px-4 py-1 text-sm font-medium min-w-[2.5rem] sm:min-w-[3rem] text-center">
+                      {quantity}
+                    </span>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="h-8 w-8 p-0 touch-manipulation"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
-
-                {/* Description */}
-                {product.description && (
-                  <div className="bg-secondary/20 rounded-lg p-4 border border-border/30">
-                    <h3 className="font-heading font-bold text-lg mb-2 text-foreground flex items-center">
-                      <div className="w-1 h-4 bg-primary rounded-full mr-2"></div>
-                      About this product
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {product.description}
-                    </p>
-                  </div>
-                )}
-
-                {/* Features */}
-                <div>
-                  <h3 className="font-heading font-bold text-lg mb-3 text-foreground flex items-center">
-                    <div className="w-1 h-4 bg-primary rounded-full mr-2"></div>
-                    Why choose this?
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 p-2 bg-background rounded-md border border-border/30">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="h-3 w-3 text-primary" />
-                      </div>
-                      <span className="text-foreground text-sm">Made with traditional recipes</span>
-                    </div>
-                    <div className="flex items-center space-x-2 p-2 bg-background rounded-md border border-border/30">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="h-3 w-3 text-primary" />
-                      </div>
-                      <span className="text-foreground text-sm">Premium quality ingredients</span>
-                    </div>
-                    <div className="flex items-center space-x-2 p-2 bg-background rounded-md border border-border/30">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="h-3 w-3 text-primary" />
-                      </div>
-                      <span className="text-foreground text-sm">No artificial preservatives</span>
-                    </div>
-                    <div className="flex items-center space-x-2 p-2 bg-background rounded-md border border-border/30">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="h-3 w-3 text-primary" />
-                      </div>
-                      <span className="text-foreground text-sm">Authentic Tamil flavors</span>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Action Buttons */}
                 <div className="flex flex-row gap-3 pt-4 w-full">
                   <Button 
